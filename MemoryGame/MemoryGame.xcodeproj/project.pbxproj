@@ -11,6 +11,10 @@
 		661ECC212413D9C00048B237 /* Card.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 661ECC1D2413D9C00048B237 /* Card.cpp */; };
 		661ECC222413D9C00048B237 /* Deck.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 661ECC1E2413D9C00048B237 /* Deck.cpp */; };
 		661ECC252413DA7F0048B237 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 661ECC232413DA7F0048B237 /* Game.cpp */; };
+		6644470124152C8500800420 /* liballegro_main.5.2.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 664446FF24152C8400800420 /* liballegro_main.5.2.6.dylib */; };
+		6644470224152C8500800420 /* liballegro.5.2.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6644470024152C8400800420 /* liballegro.5.2.6.dylib */; };
+		6644470324152C8900800420 /* liballegro_main.5.2.6.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 664446FF24152C8400800420 /* liballegro_main.5.2.6.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		6644470524152C8A00800420 /* liballegro.5.2.6.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 6644470024152C8400800420 /* liballegro.5.2.6.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,6 +27,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
+		6644470424152C8900800420 /* Embed Libraries */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				6644470524152C8A00800420 /* liballegro.5.2.6.dylib in Embed Libraries */,
+				6644470324152C8900800420 /* liballegro_main.5.2.6.dylib in Embed Libraries */,
+			);
+			name = "Embed Libraries";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +50,9 @@
 		661ECC1F2413D9C00048B237 /* Deck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Deck.h; sourceTree = "<group>"; };
 		661ECC232413DA7F0048B237 /* Game.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
 		661ECC242413DA7F0048B237 /* Game.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Game.hpp; sourceTree = "<group>"; };
+		664446FF24152C8400800420 /* liballegro_main.5.2.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = liballegro_main.5.2.6.dylib; path = ../../../../../../../../../usr/local/Cellar/allegro/5.2.6.0/lib/liballegro_main.5.2.6.dylib; sourceTree = "<group>"; };
+		6644470024152C8400800420 /* liballegro.5.2.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = liballegro.5.2.6.dylib; path = ../../../../../../../../../usr/local/Cellar/allegro/5.2.6.0/lib/liballegro.5.2.6.dylib; sourceTree = "<group>"; };
+		6644470624152DB200800420 /* MemoryGame.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MemoryGame.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,6 +60,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6644470124152C8500800420 /* liballegro_main.5.2.6.dylib in Frameworks */,
+				6644470224152C8500800420 /* liballegro.5.2.6.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,6 +73,7 @@
 			children = (
 				661ECC0A2413D8FD0048B237 /* MemoryGame */,
 				661ECC092413D8FD0048B237 /* Products */,
+				6672B98D2413F77E00AF6433 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -66,6 +88,25 @@
 		661ECC0A2413D8FD0048B237 /* MemoryGame */ = {
 			isa = PBXGroup;
 			children = (
+				6644470624152DB200800420 /* MemoryGame.entitlements */,
+				6672B9B2241404CA00AF6433 /* Graphics */,
+				6672B9B1241404BD00AF6433 /* Engine */,
+			);
+			path = MemoryGame;
+			sourceTree = "<group>";
+		};
+		6672B98D2413F77E00AF6433 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				664446FF24152C8400800420 /* liballegro_main.5.2.6.dylib */,
+				6644470024152C8400800420 /* liballegro.5.2.6.dylib */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6672B9B1241404BD00AF6433 /* Engine */ = {
+			isa = PBXGroup;
+			children = (
 				661ECC1A2413D9C00048B237 /* main.cpp */,
 				661ECC232413DA7F0048B237 /* Game.cpp */,
 				661ECC242413DA7F0048B237 /* Game.hpp */,
@@ -74,7 +115,14 @@
 				661ECC1E2413D9C00048B237 /* Deck.cpp */,
 				661ECC1F2413D9C00048B237 /* Deck.h */,
 			);
-			path = MemoryGame;
+			path = Engine;
+			sourceTree = "<group>";
+		};
+		6672B9B2241404CA00AF6433 /* Graphics */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Graphics;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -87,6 +135,7 @@
 				661ECC042413D8FD0048B237 /* Sources */,
 				661ECC052413D8FD0048B237 /* Frameworks */,
 				661ECC062413D8FD0048B237 /* CopyFiles */,
+				6644470424152C8900800420 /* Embed Libraries */,
 			);
 			buildRules = (
 			);
@@ -256,9 +305,16 @@
 		661ECC102413D8FD0048B237 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = MemoryGame/MemoryGame.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5TNJW87CR7;
 				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
+				HEADER_SEARCH_PATHS = /usr/local/include;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/allegro/5.2.6.0/lib,
+				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -267,9 +323,16 @@
 		661ECC112413D8FD0048B237 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = MemoryGame/MemoryGame.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 5TNJW87CR7;
 				ENABLE_HARDENED_RUNTIME = YES;
+				FRAMEWORK_SEARCH_PATHS = /Library/Frameworks;
+				HEADER_SEARCH_PATHS = /usr/local/include;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/allegro/5.2.6.0/lib,
+				);
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
