@@ -16,8 +16,6 @@
 class Game;
 
 void initiateDisplay (Deck deck);
-void loadCardBacks (ALLEGRO_BITMAP * image);
+void loadDeck (Deck deck, ALLEGRO_BITMAP * cardBack);
 std::vector <int> manageClick (std::vector <int> coordinates, int x, int y);
-void uncoverCard (Deck deck, int x, int y);
-
 #endif /* display_hpp */

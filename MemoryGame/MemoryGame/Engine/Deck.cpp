@@ -41,28 +41,10 @@ void Deck::addCards(std::string fileName)
 		for(int j=0; j<ROWS; j++)
 		{
 			cards[i][j].setName(names[count]);
+            std::cout << cards[i][j].name << std::endl;
 			count++;
 		}
+        std::cout<< std::endl;
 	}
 	cardFile.close();
-}
-
-void Deck::print()
-{
-	//Creates the main display of the 'board'
-	//Cards are hidden unless specifically flipped by player
-
-	for(int i=0; i<ROWS; i++)
-	{
-		for(int j=0; j<COLS; j++)
-		{
-			if(cards[i][j].matched)
-			{std::cout<<"[   OOO   ]";}
-			else if(!cards[i][j].faceUp)
-			{std::cout<<"[    X    ]";}
-			else
-			{std::cout<<cards[i][j].name<<"\t";}
-		}
-		std::cout<<std::endl;
-	}
 }

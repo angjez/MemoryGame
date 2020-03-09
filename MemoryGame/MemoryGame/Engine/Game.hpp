@@ -12,7 +12,7 @@
 
 class Game{
     public:
-    void move(Deck deck, int count, int points, int firstPos1, int firstPos2, int secPos1, int secPos2);
+    void move(Deck & deck, int & count, int & points, int firstPos1, int firstPos2, int secPos1, int secPos2);
 };
 
 #endif /* Game_hpp */
