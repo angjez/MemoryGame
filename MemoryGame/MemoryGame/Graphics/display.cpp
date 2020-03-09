@@ -1,6 +1,9 @@
 #include "display.hpp"
 
-void initiateDisplay () {
+void initiateDisplay (Deck deck) {
+    int count =0, points=0;
+    Game game;
+    
     ALLEGRO_DISPLAY *display = NULL;
     
     al_init_font_addon(); // initialize the font addon
@@ -32,8 +35,10 @@ void initiateDisplay () {
     al_install_mouse();
     al_register_event_source(event_queue, al_get_display_event_source(display));
     al_register_event_source(event_queue, al_get_mouse_event_source());
+    std::vector <float> coordinates;
     while(1)
     {
+        loadCardBacks(image);
         ALLEGRO_MOUSE_STATE state;
         al_get_mouse_state(&state);
         
@@ -47,6 +52,23 @@ void initiateDisplay () {
         }
         if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
             std::cout<<std::endl<<">>CLICKED<<" <<state.x<<":"<<state.y << std::endl;
+            if (coordinates.size() < 2) {
+                coordinates.push_back(state.x);
+                coordinates.push_back(state.y);
+            }
+            else if (coordinates.size() < 4) {
+                if(coordinates[0]!=state.x)
+                    coordinates.push_back(state.x);
+                if(coordinates[1]!=state.y)
+                    coordinates.push_back(state.y);
+            }
+            else {
+                coordinates = manageClick(coordinates);
+                uncoverCard(deck, coordinates[0], coordinates[1]);
+                uncoverCard(deck, coordinates[2], coordinates[3]);
+                game.move(deck, count, points, coordinates[0], coordinates[2], coordinates[1], coordinates[3]);
+                coordinates.clear();
+            }
         }
     }
     
@@ -63,4 +85,37 @@ void loadCardBacks (ALLEGRO_BITMAP * image) {
             al_draw_bitmap(image, x1 - i*320, y1-j*200,0);
         }
     }
+}
+
+std::vector <float> manageClick (std::vector <float> coordinates) {
+    int x1 = 80, y1 = 240, x2 = 80+160, y2 = 240+160;
+    for (int i = 0; i < 6; i++) {
+        y1 = 240;
+        y2 = 240+160;
+        for (int j = 0; j < 6; j++) {
+            if(x1 < coordinates[0] && coordinates[0] < x2 && y1 < coordinates[1] && coordinates[1] < y2) {
+                coordinates[0] = i;
+                coordinates[1] = j;
+            }
+            else if(x1 < coordinates[2] && coordinates[2] < x2 && y1 < coordinates[3] && coordinates[3] < y2) {
+                coordinates[2] = i;
+                coordinates[3] = j;
+            }
+            y1 = y1 + 200;
+            y2 = y1 +160;
+        }
+        x1 = x1 + 320;
+        x2 = x1 +160;
+    }
+    
+    return coordinates;
+}
+
+void uncoverCard (Deck deck, int x, int y) {
+    std::string name = deck.cards[x][y].name;
+    ALLEGRO_BITMAP * img = al_load_bitmap(name.c_str());
+    al_draw_bitmap(img, 0, 0, 0);
+    al_flip_display();
+    al_rest(3);
+    al_destroy_bitmap(img);
 }

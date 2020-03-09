@@ -3,14 +3,21 @@
 
 #include <stdio.h>
 #include <iostream>
+#include <vector>
 #include "allegro5/allegro.h"
 #include "allegro5/allegro_font.h"
 #include "allegro5/allegro_ttf.h"
 #include "allegro5/allegro_image.h"
 #include "allegro5/allegro_primitives.h"
+#include "Deck.h"
+#include "Card.h"
+#include "Game.hpp"
 
-void initiateDisplay ();
+class Game;
+
+void initiateDisplay (Deck deck);
 void loadCardBacks (ALLEGRO_BITMAP * image);
-void loadDisplayClosedEvent (ALLEGRO_EVENT_QUEUE * event_queue, ALLEGRO_DISPLAY *display);
+std::vector <float> manageClick (std::vector <float> coordinates);
+void uncoverCard (Deck deck, int x, int y);
 
 #endif /* display_hpp */
