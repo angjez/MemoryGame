@@ -35,7 +35,7 @@ void initiateDisplay (Deck deck) {
     al_install_mouse();
     al_register_event_source(event_queue, al_get_display_event_source(display));
     al_register_event_source(event_queue, al_get_mouse_event_source());
-    std::vector <float> coordinates;
+    std::vector <int> coordinates;
     while(1)
     {
         loadCardBacks(image);
@@ -51,21 +51,26 @@ void initiateDisplay (Deck deck) {
            break;
         }
         if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
-            std::cout<<std::endl<<">>CLICKED<<" <<state.x<<":"<<state.y << std::endl;
             if (coordinates.size() < 2) {
                 coordinates.push_back(state.x);
                 coordinates.push_back(state.y);
+                coordinates = manageClick(coordinates, 0, 1);
+                int a = coordinates[0], b = coordinates[1];
+                std::string name = deck.cards[a][b].name;
+                uncoverCard(deck, coordinates[0], coordinates[1]);
             }
-            else if (coordinates.size() < 4) {
-                if(coordinates[0]!=state.x)
-                    coordinates.push_back(state.x);
-                if(coordinates[1]!=state.y)
-                    coordinates.push_back(state.y);
+            else if (coordinates.size() < 4 && coordinates[0]!=state.x && coordinates[1]!=state.y) {
+                coordinates.push_back(state.x);
+                coordinates.push_back(state.y);
+                coordinates = manageClick(coordinates, 2, 3);
+                int a = coordinates[2], b = coordinates[3];
+                std::string name = deck.cards[a][b].name;
+                uncoverCard(deck, coordinates[2], coordinates[3]);
             }
             else {
-                coordinates = manageClick(coordinates);
-                uncoverCard(deck, coordinates[0], coordinates[1]);
-                uncoverCard(deck, coordinates[2], coordinates[3]);
+//                coordinates = manageClick(coordinates);
+//                uncoverCard(deck, coordinates[0], coordinates[1]);
+//                uncoverCard(deck, coordinates[2], coordinates[3]);
                 game.move(deck, count, points, coordinates[0], coordinates[2], coordinates[1], coordinates[3]);
                 coordinates.clear();
             }
@@ -87,19 +92,15 @@ void loadCardBacks (ALLEGRO_BITMAP * image) {
     }
 }
 
-std::vector <float> manageClick (std::vector <float> coordinates) {
+std::vector <int> manageClick (std::vector <int> coordinates, int x, int y) {
     int x1 = 80, y1 = 240, x2 = 80+160, y2 = 240+160;
     for (int i = 0; i < 6; i++) {
         y1 = 240;
         y2 = 240+160;
         for (int j = 0; j < 6; j++) {
-            if(x1 < coordinates[0] && coordinates[0] < x2 && y1 < coordinates[1] && coordinates[1] < y2) {
-                coordinates[0] = i;
-                coordinates[1] = j;
-            }
-            else if(x1 < coordinates[2] && coordinates[2] < x2 && y1 < coordinates[3] && coordinates[3] < y2) {
-                coordinates[2] = i;
-                coordinates[3] = j;
+            if(x1 < coordinates[x] && coordinates[x] < x2 && y1 < coordinates[y] && coordinates[y] < y2) {
+                coordinates[x] = i;
+                coordinates[y] = j;
             }
             y1 = y1 + 200;
             y2 = y1 +160;
@@ -107,15 +108,19 @@ std::vector <float> manageClick (std::vector <float> coordinates) {
         x1 = x1 + 320;
         x2 = x1 +160;
     }
-    
+    std::cout << coordinates[x] << coordinates[y] << std::endl;
     return coordinates;
 }
 
 void uncoverCard (Deck deck, int x, int y) {
+    
     std::string name = deck.cards[x][y].name;
+    std::cout << name;
     ALLEGRO_BITMAP * img = al_load_bitmap(name.c_str());
     al_draw_bitmap(img, 0, 0, 0);
     al_flip_display();
     al_rest(3);
+    img = nullptr;
     al_destroy_bitmap(img);
+    al_flip_display();
 }
