@@ -105,6 +105,11 @@ void loadDeck (Deck deck, ALLEGRO_BITMAP * cardBack, int points) {
             if(!deck.cards[i][j].faceUp){
                 al_draw_bitmap(cardBack, x1 + i*320, y1+j*200, 0);
             }
+            else if (deck.cards[i][j].matched){
+                std::string name = "Matched.png";
+                ALLEGRO_BITMAP * img = al_load_bitmap(name.c_str());
+                al_draw_bitmap(img, x1 + i*320, y1+j*200, 0);
+            }
             else{
                 std::string name = deck.cards[i][j].name;
                 ALLEGRO_BITMAP * img = al_load_bitmap(name.c_str());

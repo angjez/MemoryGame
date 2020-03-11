@@ -19,19 +19,19 @@ void Game::move(Deck & deck, int & count, int & points, int firstPos1, int first
         faceUp(deck.cards[firstPos1][firstPos2], deck.cards[secPos1][secPos2]);
         
         
-        if(deck.cards[firstPos1][firstPos2].name == deck.cards[secPos1][secPos2].name)
+        if(deck.cards[firstPos1][firstPos2].name == deck.cards[secPos1][secPos2].name && !deck.cards[firstPos1][firstPos2].matched && !deck.cards[secPos1][secPos2].matched)
         {
 //            a match
+            deck.cards[firstPos1][firstPos2].matched = true;
+            deck.cards[secPos1][secPos2].matched = true;
             count+=2;
             points+=5;
-            std::cout << points << std::endl;
             faceUp(deck.cards[firstPos1][firstPos2], deck.cards[secPos1][secPos2]);
         }
         else
         {
 //            no match
             points-=1;
-            std::cout << points << std::endl;
             faceDown(deck.cards[firstPos1][firstPos2], deck.cards[secPos1][secPos2]);
         }
 }
