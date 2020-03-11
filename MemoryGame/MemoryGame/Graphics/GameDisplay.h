@@ -1,5 +1,5 @@
-#ifndef display_hpp
-#define display_hpp
+#ifndef GameDisplay_h
+#define GameDisplay_h
 
 #include <stdio.h>
 #include <iostream>
@@ -11,11 +11,11 @@
 #include "allegro5/allegro_primitives.h"
 #include "Deck.h"
 #include "Card.h"
-#include "Game.hpp"
+#include "Game.h"
 
 class Game;
 
 void initiateDisplay (Deck deck);
-void loadDeck (Deck deck, ALLEGRO_BITMAP * cardBack);
+void loadDeck (Deck deck, ALLEGRO_BITMAP * cardBack, int points);
 std::vector <int> manageClick (std::vector <int> coordinates, int x, int y);
-#endif /* display_hpp */
+#endif /* GameDisplay_h */

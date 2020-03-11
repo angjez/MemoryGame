@@ -1,4 +1,4 @@
-#include "display.hpp"
+#include "GameDisplay.h"
 
 void initiateDisplay (Deck deck) {
     int count =0, points=0;
@@ -6,11 +6,11 @@ void initiateDisplay (Deck deck) {
     
     ALLEGRO_DISPLAY *display = NULL;
     
+//    initializations // TODO: add exeptions
     al_init_font_addon(); // initialize the font addon
     al_init_ttf_addon();// initialize the ttf (True Type Font) addon
     al_init_image_addon(); // initialize image addon
     
-
     if(!al_init()) {
        fprintf(stderr, "failed to initialize allegro!\n");
     }
@@ -18,11 +18,8 @@ void initiateDisplay (Deck deck) {
     display = al_create_display(1920, 1440);
     al_clear_to_color(al_map_rgb(255, 255, 255));
 
-//    load card backs
     ALLEGRO_BITMAP * image = al_load_bitmap("CardBack.png");
-//    loadCardBacks(image);
-    
-    loadDeck(deck, image);
+    loadDeck(deck, image, points);
     
     al_flip_display();
     
@@ -50,7 +47,7 @@ void initiateDisplay (Deck deck) {
            break;
         }
         if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
-            loadDeck(deck, image);
+            loadDeck(deck, image, points);
             al_flip_display();
             if (coordinates.size() < 2) {
                 coordinates.push_back(state.x);
@@ -59,7 +56,7 @@ void initiateDisplay (Deck deck) {
                 up1 = coordinates[0];
                 up2 = coordinates[1];
                 deck.cards[up1][up2].faceUp = true;
-                loadDeck(deck, image);
+                loadDeck(deck, image, points);
                 al_flip_display();
             }
             else if (coordinates.size() < 4 && coordinates[0]!=state.x && coordinates[1]!=state.y) {
@@ -69,14 +66,14 @@ void initiateDisplay (Deck deck) {
                 up3 = coordinates[2];
                 up4 = coordinates[3];
                 deck.cards[up3][up4].faceUp = true;
-                loadDeck(deck, image);
+                loadDeck(deck, image, points);
                 al_flip_display();
             }
             else {
                 deck.cards[up1][up2].faceUp = false;
-                deck.cards[up3][up4].faceUp = false;
+                deck.cards[up3][up4].faceUp =false;
                 game.move(deck, count, points, coordinates[0], coordinates[1], coordinates[2], coordinates[3]);
-                loadDeck(deck, image);
+                loadDeck(deck, image, points);
                 al_flip_display();
                 coordinates.clear();
             }
@@ -89,11 +86,16 @@ void initiateDisplay (Deck deck) {
     al_uninstall_mouse();
 }
 
-void loadDeck (Deck deck, ALLEGRO_BITMAP * cardBack) {
+void loadDeck (Deck deck, ALLEGRO_BITMAP * cardBack, int points) {
     al_clear_to_color(al_map_rgb(255, 255, 255));
-    //    add game title
-    ALLEGRO_FONT *font = al_load_ttf_font("orangejuice.ttf", 180, 180);
-    al_draw_text(font, al_map_rgb(106, 133, 178), 960, (40),ALLEGRO_ALIGN_CENTRE, "Memory");
+//    add game title
+    ALLEGRO_FONT *titleFont = al_load_ttf_font("orangejuice.ttf", 180, 180);
+    al_draw_text(titleFont, al_map_rgb(106, 133, 178), 960, (40),ALLEGRO_ALIGN_CENTRE, "Memory");
+    
+//    add point counter
+    std::string displayPoints = "Points: " + std::to_string(points);
+    ALLEGRO_FONT *font = al_load_ttf_font("OpenSans.ttf", 40, 40);
+    al_draw_text(font, al_map_rgb(106, 133, 178), 1600, (40),ALLEGRO_ALIGN_CENTRE, displayPoints.c_str());
     
     int x1 = 80, y1 = 240;
     for(int i=0; i<6; i++)

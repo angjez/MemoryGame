@@ -1,4 +1,4 @@
-#include "Game.hpp"
+#include "Game.h"
 
 //template use example
 template<typename T>
@@ -15,9 +15,6 @@ void faceDown(T & a, T & b)
 }
 
 void Game::move(Deck & deck, int & count, int & points, int firstPos1, int firstPos2, int secPos1, int secPos2) {
-    //Runs the game- the player is presented with the board until all matches are made
-    //Flipping and comparing cards are simple tasks, so opted not to separate into smaller functions
-        std::cout<<std::endl<< deck.cards[firstPos1][firstPos2].name << " " << deck.cards[secPos1][secPos2].name << " "  << std::endl;
         
         faceUp(deck.cards[firstPos1][firstPos2], deck.cards[secPos1][secPos2]);
         
@@ -25,17 +22,16 @@ void Game::move(Deck & deck, int & count, int & points, int firstPos1, int first
         if(deck.cards[firstPos1][firstPos2].name == deck.cards[secPos1][secPos2].name)
         {
 //            a match
-            std::cout<<std::endl<< "match"<< std::endl;
             count+=2;
             points+=5;
+            std::cout << points << std::endl;
             faceUp(deck.cards[firstPos1][firstPos2], deck.cards[secPos1][secPos2]);
         }
         else
         {
 //            no match
-            std::cout<<std::endl<< "no match"<< std::endl;
             points-=1;
+            std::cout << points << std::endl;
             faceDown(deck.cards[firstPos1][firstPos2], deck.cards[secPos1][secPos2]);
         }
-        std::cout<<std::endl<< count << std::endl;
 }

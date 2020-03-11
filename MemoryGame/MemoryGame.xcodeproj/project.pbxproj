@@ -15,7 +15,7 @@
 		6644470224152C8500800420 /* liballegro.5.2.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6644470024152C8400800420 /* liballegro.5.2.6.dylib */; };
 		6644470324152C8900800420 /* liballegro_main.5.2.6.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 664446FF24152C8400800420 /* liballegro_main.5.2.6.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		6644470524152C8A00800420 /* liballegro.5.2.6.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 6644470024152C8400800420 /* liballegro.5.2.6.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		664447092415323200800420 /* display.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 664447072415323200800420 /* display.cpp */; };
+		664447092415323200800420 /* GameDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 664447072415323200800420 /* GameDisplay.cpp */; };
 		6644470C2415363700800420 /* liballegro_ttf.5.2.6.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 6644470A2415363600800420 /* liballegro_ttf.5.2.6.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		6644470D2415363700800420 /* liballegro_font.5.2.6.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 6644470B2415363600800420 /* liballegro_font.5.2.6.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		664447102415366F00800420 /* liballegro_font.5.2.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6644470B2415363600800420 /* liballegro_font.5.2.6.dylib */; };
@@ -24,6 +24,8 @@
 		6644471424153FE200800420 /* liballegro_primitives.5.2.6.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 6644471224153FDD00800420 /* liballegro_primitives.5.2.6.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		6644471624154D8F00800420 /* liballegro_image.5.2.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 6644471524154D8F00800420 /* liballegro_image.5.2.6.dylib */; };
 		6644471724154D9300800420 /* liballegro_image.5.2.6.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 6644471524154D8F00800420 /* liballegro_image.5.2.6.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		669D85342417B463000C6403 /* WelcomeDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 669D85322417B463000C6403 /* WelcomeDisplay.cpp */; };
+		669D85372417B4A5000C6403 /* FinalDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 669D85352417B4A5000C6403 /* FinalDisplay.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -62,18 +64,22 @@
 		661ECC1E2413D9C00048B237 /* Deck.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Deck.cpp; sourceTree = "<group>"; };
 		661ECC1F2413D9C00048B237 /* Deck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Deck.h; sourceTree = "<group>"; };
 		661ECC232413DA7F0048B237 /* Game.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
-		661ECC242413DA7F0048B237 /* Game.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Game.hpp; sourceTree = "<group>"; };
+		661ECC242413DA7F0048B237 /* Game.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		664446FF24152C8400800420 /* liballegro_main.5.2.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = liballegro_main.5.2.6.dylib; path = ../../../../../../../../../usr/local/Cellar/allegro/5.2.6.0/lib/liballegro_main.5.2.6.dylib; sourceTree = "<group>"; };
 		6644470024152C8400800420 /* liballegro.5.2.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = liballegro.5.2.6.dylib; path = ../../../../../../../../../usr/local/Cellar/allegro/5.2.6.0/lib/liballegro.5.2.6.dylib; sourceTree = "<group>"; };
 		6644470624152DB200800420 /* MemoryGame.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MemoryGame.entitlements; sourceTree = "<group>"; };
-		664447072415323200800420 /* display.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = display.cpp; sourceTree = "<group>"; };
-		664447082415323200800420 /* display.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = display.hpp; sourceTree = "<group>"; };
+		664447072415323200800420 /* GameDisplay.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GameDisplay.cpp; sourceTree = "<group>"; };
+		664447082415323200800420 /* GameDisplay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameDisplay.h; sourceTree = "<group>"; };
 		6644470A2415363600800420 /* liballegro_ttf.5.2.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = liballegro_ttf.5.2.6.dylib; path = ../../../../../../../../../usr/local/Cellar/allegro/5.2.6.0/lib/liballegro_ttf.5.2.6.dylib; sourceTree = "<group>"; };
 		6644470B2415363600800420 /* liballegro_font.5.2.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = liballegro_font.5.2.6.dylib; path = ../../../../../../../../../usr/local/Cellar/allegro/5.2.6.0/lib/liballegro_font.5.2.6.dylib; sourceTree = "<group>"; };
 		6644470E2415363B00800420 /* liballegro_ttf.5.2.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = liballegro_ttf.5.2.6.dylib; sourceTree = "<group>"; };
 		6644470F2415363F00800420 /* liballegro_font.5.2.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; path = liballegro_font.5.2.6.dylib; sourceTree = "<group>"; };
 		6644471224153FDD00800420 /* liballegro_primitives.5.2.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = liballegro_primitives.5.2.6.dylib; path = ../../../../../../../../../usr/local/Cellar/allegro/5.2.6.0/lib/liballegro_primitives.5.2.6.dylib; sourceTree = "<group>"; };
 		6644471524154D8F00800420 /* liballegro_image.5.2.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = liballegro_image.5.2.6.dylib; path = ../../../../../../../../../usr/local/Cellar/allegro/5.2.6.0/lib/liballegro_image.5.2.6.dylib; sourceTree = "<group>"; };
+		669D85322417B463000C6403 /* WelcomeDisplay.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = WelcomeDisplay.cpp; sourceTree = "<group>"; };
+		669D85332417B463000C6403 /* WelcomeDisplay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WelcomeDisplay.h; sourceTree = "<group>"; };
+		669D85352417B4A5000C6403 /* FinalDisplay.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FinalDisplay.cpp; sourceTree = "<group>"; };
+		669D85362417B4A5000C6403 /* FinalDisplay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinalDisplay.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,7 +146,7 @@
 			children = (
 				661ECC1A2413D9C00048B237 /* main.cpp */,
 				661ECC232413DA7F0048B237 /* Game.cpp */,
-				661ECC242413DA7F0048B237 /* Game.hpp */,
+				661ECC242413DA7F0048B237 /* Game.h */,
 				661ECC1D2413D9C00048B237 /* Card.cpp */,
 				661ECC1C2413D9C00048B237 /* Card.h */,
 				661ECC1E2413D9C00048B237 /* Deck.cpp */,
@@ -152,8 +158,12 @@
 		6672B9B2241404CA00AF6433 /* Graphics */ = {
 			isa = PBXGroup;
 			children = (
-				664447072415323200800420 /* display.cpp */,
-				664447082415323200800420 /* display.hpp */,
+				664447072415323200800420 /* GameDisplay.cpp */,
+				664447082415323200800420 /* GameDisplay.h */,
+				669D85322417B463000C6403 /* WelcomeDisplay.cpp */,
+				669D85332417B463000C6403 /* WelcomeDisplay.h */,
+				669D85352417B4A5000C6403 /* FinalDisplay.cpp */,
+				669D85362417B4A5000C6403 /* FinalDisplay.h */,
 			);
 			path = Graphics;
 			sourceTree = "<group>";
@@ -216,10 +226,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				669D85372417B4A5000C6403 /* FinalDisplay.cpp in Sources */,
 				661ECC222413D9C00048B237 /* Deck.cpp in Sources */,
+				669D85342417B463000C6403 /* WelcomeDisplay.cpp in Sources */,
 				661ECC202413D9C00048B237 /* main.cpp in Sources */,
 				661ECC212413D9C00048B237 /* Card.cpp in Sources */,
-				664447092415323200800420 /* display.cpp in Sources */,
+				664447092415323200800420 /* GameDisplay.cpp in Sources */,
 				661ECC252413DA7F0048B237 /* Game.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
