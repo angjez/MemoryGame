@@ -41,7 +41,6 @@ void Deck::addCards(std::string fileName)
 		for(int j=0; j<ROWS; j++)
 		{
 			cards[i][j].setName(names[count]);
-            std::cout << cards[i][j].name << std::endl;
 			count++;
 		}
         std::cout<< std::endl;

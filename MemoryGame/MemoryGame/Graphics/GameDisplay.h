@@ -5,6 +5,8 @@
 #include <iostream>
 #include <vector>
 #include "allegro5/allegro.h"
+#include "allegro5/allegro_audio.h"
+#include "allegro5/allegro_acodec.h"
 #include "allegro5/allegro_font.h"
 #include "allegro5/allegro_ttf.h"
 #include "allegro5/allegro_image.h"
@@ -15,7 +17,9 @@
 
 class Game;
 
-void initiateDisplay (Deck deck);
-void loadDeck (Deck deck, ALLEGRO_BITMAP * cardBack, int points);
+void initializeDisplay (ALLEGRO_DISPLAY *display);
+void mainLoop (int count, int points, Deck deck, Game game, ALLEGRO_EVENT_QUEUE * event_queue, ALLEGRO_SAMPLE *clickSound, ALLEGRO_SAMPLE *matchedSound);
+void loadDeck (Deck deck, int points);
 std::vector <int> manageClick (std::vector <int> coordinates, int x, int y);
+
 #endif /* GameDisplay_h */

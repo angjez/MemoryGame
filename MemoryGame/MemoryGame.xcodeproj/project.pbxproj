@@ -26,6 +26,10 @@
 		6644471724154D9300800420 /* liballegro_image.5.2.6.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 6644471524154D8F00800420 /* liballegro_image.5.2.6.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		669D85342417B463000C6403 /* WelcomeDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 669D85322417B463000C6403 /* WelcomeDisplay.cpp */; };
 		669D85372417B4A5000C6403 /* FinalDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 669D85352417B4A5000C6403 /* FinalDisplay.cpp */; };
+		66ABECED241BD3FB0079698D /* liballegro_acodec.5.2.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66ABECEC241BD3FB0079698D /* liballegro_acodec.5.2.6.dylib */; };
+		66ABECEE241BD3FF0079698D /* liballegro_acodec.5.2.6.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 66ABECEC241BD3FB0079698D /* liballegro_acodec.5.2.6.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		66C5818E241BCA95008AC38E /* liballegro_audio.5.2.6.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 66C5818D241BCA95008AC38E /* liballegro_audio.5.2.6.dylib */; };
+		66C5818F241BCA9D008AC38E /* liballegro_audio.5.2.6.dylib in Embed Libraries */ = {isa = PBXBuildFile; fileRef = 66C5818D241BCA95008AC38E /* liballegro_audio.5.2.6.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -45,6 +49,8 @@
 			dstSubfolderSpec = 10;
 			files = (
 				6644471724154D9300800420 /* liballegro_image.5.2.6.dylib in Embed Libraries */,
+				66ABECEE241BD3FF0079698D /* liballegro_acodec.5.2.6.dylib in Embed Libraries */,
+				66C5818F241BCA9D008AC38E /* liballegro_audio.5.2.6.dylib in Embed Libraries */,
 				6644470C2415363700800420 /* liballegro_ttf.5.2.6.dylib in Embed Libraries */,
 				6644470D2415363700800420 /* liballegro_font.5.2.6.dylib in Embed Libraries */,
 				6644470524152C8A00800420 /* liballegro.5.2.6.dylib in Embed Libraries */,
@@ -80,6 +86,8 @@
 		669D85332417B463000C6403 /* WelcomeDisplay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WelcomeDisplay.h; sourceTree = "<group>"; };
 		669D85352417B4A5000C6403 /* FinalDisplay.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = FinalDisplay.cpp; sourceTree = "<group>"; };
 		669D85362417B4A5000C6403 /* FinalDisplay.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FinalDisplay.h; sourceTree = "<group>"; };
+		66ABECEC241BD3FB0079698D /* liballegro_acodec.5.2.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = liballegro_acodec.5.2.6.dylib; path = ../../../../../../../../../usr/local/Cellar/allegro/5.2.6.0/lib/liballegro_acodec.5.2.6.dylib; sourceTree = "<group>"; };
+		66C5818D241BCA95008AC38E /* liballegro_audio.5.2.6.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = liballegro_audio.5.2.6.dylib; path = ../../../../../../../../../usr/local/Cellar/allegro/5.2.6.0/lib/liballegro_audio.5.2.6.dylib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +95,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				66ABECED241BD3FB0079698D /* liballegro_acodec.5.2.6.dylib in Frameworks */,
+				66C5818E241BCA95008AC38E /* liballegro_audio.5.2.6.dylib in Frameworks */,
 				6644471624154D8F00800420 /* liballegro_image.5.2.6.dylib in Frameworks */,
 				6644471324153FDD00800420 /* liballegro_primitives.5.2.6.dylib in Frameworks */,
 				664447102415366F00800420 /* liballegro_font.5.2.6.dylib in Frameworks */,
@@ -131,6 +141,8 @@
 		6672B98D2413F77E00AF6433 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				66ABECEC241BD3FB0079698D /* liballegro_acodec.5.2.6.dylib */,
+				66C5818D241BCA95008AC38E /* liballegro_audio.5.2.6.dylib */,
 				6644471524154D8F00800420 /* liballegro_image.5.2.6.dylib */,
 				6644471224153FDD00800420 /* liballegro_primitives.5.2.6.dylib */,
 				664446FF24152C8400800420 /* liballegro_main.5.2.6.dylib */,

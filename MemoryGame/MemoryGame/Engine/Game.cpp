@@ -14,7 +14,7 @@ void faceDown(T & a, T & b)
     b.faceUp = false;
 }
 
-void Game::move(Deck & deck, int & count, int & points, int firstPos1, int firstPos2, int secPos1, int secPos2) {
+bool Game::move(Deck & deck, int & count, int & points, int firstPos1, int firstPos2, int secPos1, int secPos2) {
         
         faceUp(deck.cards[firstPos1][firstPos2], deck.cards[secPos1][secPos2]);
         
@@ -27,6 +27,7 @@ void Game::move(Deck & deck, int & count, int & points, int firstPos1, int first
             count+=2;
             points+=5;
             faceUp(deck.cards[firstPos1][firstPos2], deck.cards[secPos1][secPos2]);
+            return 1;
         }
         else
         {
@@ -34,4 +35,5 @@ void Game::move(Deck & deck, int & count, int & points, int firstPos1, int first
             points-=1;
             faceDown(deck.cards[firstPos1][firstPos2], deck.cards[secPos1][secPos2]);
         }
+    return 0;
 }
