@@ -44,10 +44,9 @@ void initializeDisplay (ALLEGRO_DISPLAY *display) {
 
 void mainLoop (int count, int points, Deck deck, Game game, ALLEGRO_EVENT_QUEUE * event_queue, ALLEGRO_SAMPLE *clickSound, ALLEGRO_SAMPLE *matchedSound) {
     ALLEGRO_EVENT event;
-      std::vector <int> coordinates;
+      std::vector <int> coordinates, up;
       while(count < 36)
       {
-          int up1, up2, up3, up4;
           ALLEGRO_MOUSE_STATE state;
           al_get_mouse_state(&state);
           
@@ -62,31 +61,20 @@ void mainLoop (int count, int points, Deck deck, Game game, ALLEGRO_EVENT_QUEUE 
           if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
               loadDeck(deck, points);
               al_flip_display();
-              if (coordinates.size() < 2) {
+              if (coordinates.size() < 2 || (coordinates.size() < 4 && coordinates[0]!=state.x && coordinates[1]!=state.y)) {
                   coordinates.push_back(state.x);
                   coordinates.push_back(state.y);
                   al_play_sample(clickSound, 1.0, 0, 1, ALLEGRO_PLAYMODE_ONCE,NULL);
-                  coordinates = manageClick(coordinates, 0, 1);
-                  up1 = coordinates[0];
-                  up2 = coordinates[1];
-                  deck.cards[up1][up2].faceUp = true;
-                  loadDeck(deck, points);
-                  al_flip_display();
-              }
-              else if (coordinates.size() < 4 && coordinates[0]!=state.x && coordinates[1]!=state.y) {
-                  coordinates.push_back(state.x);
-                  coordinates.push_back(state.y);
-                  al_play_sample(clickSound, 1.0, 0, 1, ALLEGRO_PLAYMODE_ONCE,NULL);
-                  coordinates = manageClick(coordinates, 2, 3);
-                  up3 = coordinates[2];
-                  up4 = coordinates[3];
-                  deck.cards[up3][up4].faceUp = true;
+                  coordinates = manageClick(coordinates, coordinates.size()-2, coordinates.size()-1);
+                  up.push_back(coordinates[coordinates.size()-2]);
+                  up.push_back(coordinates[coordinates.size()-1]);
+                  deck.cards[coordinates[coordinates.size()-2]][coordinates[coordinates.size()-1]].faceUp = true;
                   loadDeck(deck, points);
                   al_flip_display();
               }
               else {
-                  deck.cards[up1][up2].faceUp = false;
-                  deck.cards[up3][up4].faceUp =false;
+                  deck.cards[coordinates[0]][coordinates[1]].faceUp = false;
+                  deck.cards[coordinates[2]][coordinates[3]].faceUp =false;
                   if(game.move(deck, count, points, coordinates[0], coordinates[1], coordinates[2], coordinates[3]))
                      al_play_sample(matchedSound, 1.0, 0, 1, ALLEGRO_PLAYMODE_ONCE,NULL);
                   loadDeck(deck, points);
