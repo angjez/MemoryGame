@@ -39,21 +39,20 @@ void GameDisplay::initializeDisplay (ALLEGRO_DISPLAY *display) {
     al_destroy_sample(matchedSound);
     al_uninstall_audio();
     
+    al_rest(2);
     FinalDisplay finalDisplay;
     finalDisplay.initializeFinalDisplay(display, points);
 }
 
 void GameDisplay::mainLoop (Deck deck, Game game, ALLEGRO_EVENT_QUEUE * event_queue, ALLEGRO_SAMPLE *clickSound, ALLEGRO_SAMPLE *matchedSound) {
-    ALLEGRO_EVENT event;
-      std::vector <int> coordinates, up;
+    ALLEGRO_TIMEOUT timeout;
+    al_init_timeout(&timeout, 0.06);
+    std::vector <int> coordinates, up;
       while(count < 36)
       {
           ALLEGRO_MOUSE_STATE state;
           al_get_mouse_state(&state);
-          
-          ALLEGRO_TIMEOUT timeout;
-          al_init_timeout(&timeout, 0.06);
-          
+          ALLEGRO_EVENT event;
           bool get_event = al_wait_for_event_until(event_queue, &event, &timeout);
 
           if(get_event && event.type == ALLEGRO_EVENT_DISPLAY_CLOSE) {
@@ -67,7 +66,7 @@ void GameDisplay::mainLoop (Deck deck, Game game, ALLEGRO_EVENT_QUEUE * event_qu
                   coordinates.push_back(state.y);
                   al_play_sample(clickSound, 1.0, 0, 1, ALLEGRO_PLAYMODE_ONCE,NULL);
                   coordinates = manageClick(coordinates, coordinates.size()-2, coordinates.size()-1);
-                  if (coordinates.size() == 4 && coordinates[0] == coordinates[2] && coordinates[1] == coordinates[3]) {
+                  if ((coordinates.size() == 4 && coordinates[0] == coordinates[2] && coordinates[1] == coordinates[3]) || coordinates[0]>6 || coordinates[1]>6  || (coordinates.size() == 4 && coordinates[2]>6)) {
                       coordinates.pop_back();
                       coordinates.pop_back();
                   }

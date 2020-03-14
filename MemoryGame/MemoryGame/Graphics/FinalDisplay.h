@@ -5,10 +5,14 @@
 #include <map>
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
+#include <iostream>
+#include <iomanip>
+#include <ctime>
+#include <sstream>
 #include <string>
 #include <iostream>
 #include <fstream>
+#include "WelcomeDisplay.h"
 #include "allegro5/allegro.h"
 #include "allegro5/allegro_audio.h"
 #include "allegro5/allegro_acodec.h"
