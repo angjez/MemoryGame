@@ -1,7 +1,6 @@
 #include "GameDisplay.h"
 
-void initializeDisplay (ALLEGRO_DISPLAY *display) {
-    int count =0, points=0;
+void GameDisplay::initializeDisplay (ALLEGRO_DISPLAY *display) {
     Deck deck;
     deck.addCards("cards.txt");
     Game game;
@@ -13,7 +12,7 @@ void initializeDisplay (ALLEGRO_DISPLAY *display) {
     al_init_ttf_addon();// initialize the ttf (True Type Font) addon
     al_init_image_addon(); // initialize image addon
 
-    loadDeck(deck, points);
+    loadDeck(deck);
     
     al_flip_display();
     
@@ -32,17 +31,19 @@ void initializeDisplay (ALLEGRO_DISPLAY *display) {
     ALLEGRO_SAMPLE *clickSound = al_load_sample("clickSound.wav");
     ALLEGRO_SAMPLE *matchedSound = al_load_sample("matchedSound.wav");
     
-    mainLoop(count, points, deck, game, event_queue, clickSound, matchedSound);
+    mainLoop(deck, game, event_queue, clickSound, matchedSound);
   
-    al_destroy_display(display);
     al_destroy_event_queue(event_queue);
     al_uninstall_mouse();
     al_destroy_sample(clickSound);
     al_destroy_sample(matchedSound);
     al_uninstall_audio();
+    
+    FinalDisplay finalDisplay;
+    finalDisplay.initializeFinalDisplay(display, points);
 }
 
-void mainLoop (int count, int points, Deck deck, Game game, ALLEGRO_EVENT_QUEUE * event_queue, ALLEGRO_SAMPLE *clickSound, ALLEGRO_SAMPLE *matchedSound) {
+void GameDisplay::mainLoop (Deck deck, Game game, ALLEGRO_EVENT_QUEUE * event_queue, ALLEGRO_SAMPLE *clickSound, ALLEGRO_SAMPLE *matchedSound) {
     ALLEGRO_EVENT event;
       std::vector <int> coordinates, up;
       while(count < 36)
@@ -59,25 +60,31 @@ void mainLoop (int count, int points, Deck deck, Game game, ALLEGRO_EVENT_QUEUE 
              break;
           }
           if(event.type == ALLEGRO_EVENT_MOUSE_BUTTON_DOWN) {
-              loadDeck(deck, points);
+              loadDeck(deck);
               al_flip_display();
-              if (coordinates.size() < 2 || (coordinates.size() < 4 && coordinates[0]!=state.x && coordinates[1]!=state.y)) {
+              if (coordinates.size() < 4) {
                   coordinates.push_back(state.x);
                   coordinates.push_back(state.y);
                   al_play_sample(clickSound, 1.0, 0, 1, ALLEGRO_PLAYMODE_ONCE,NULL);
                   coordinates = manageClick(coordinates, coordinates.size()-2, coordinates.size()-1);
-                  up.push_back(coordinates[coordinates.size()-2]);
-                  up.push_back(coordinates[coordinates.size()-1]);
-                  deck.cards[coordinates[coordinates.size()-2]][coordinates[coordinates.size()-1]].faceUp = true;
-                  loadDeck(deck, points);
-                  al_flip_display();
+                  if (coordinates.size() == 4 && coordinates[0] == coordinates[2] && coordinates[1] == coordinates[3]) {
+                      coordinates.pop_back();
+                      coordinates.pop_back();
+                  }
+                  else {
+                      up.push_back(coordinates[coordinates.size()-2]);
+                      up.push_back(coordinates[coordinates.size()-1]);
+                      deck.cards[coordinates[coordinates.size()-2]][coordinates[coordinates.size()-1]].faceUp = true;
+                      loadDeck(deck);
+                      al_flip_display();
+                  }
               }
               else {
                   deck.cards[coordinates[0]][coordinates[1]].faceUp = false;
                   deck.cards[coordinates[2]][coordinates[3]].faceUp =false;
                   if(game.move(deck, count, points, coordinates[0], coordinates[1], coordinates[2], coordinates[3]))
                      al_play_sample(matchedSound, 1.0, 0, 1, ALLEGRO_PLAYMODE_ONCE,NULL);
-                  loadDeck(deck, points);
+                  loadDeck(deck);
                   al_flip_display();
                   coordinates.clear();
               }
@@ -85,7 +92,7 @@ void mainLoop (int count, int points, Deck deck, Game game, ALLEGRO_EVENT_QUEUE 
       }
 }
 
-void loadDeck (Deck deck, int points) {
+void GameDisplay::loadDeck (Deck deck) {
     al_clear_to_color(al_map_rgb(255, 255, 255));
 //    add game title
     ALLEGRO_FONT *titleFont = al_load_ttf_font("orangejuice.ttf", 180, 180);
@@ -120,7 +127,7 @@ void loadDeck (Deck deck, int points) {
 }
 
 
-std::vector <int> manageClick (std::vector <int> coordinates, int x, int y) {
+std::vector <int> GameDisplay::manageClick (std::vector <int> coordinates, int x, int y) {
     int x1 = 80, y1 = 240, x2 = 80+160, y2 = 240+160;
     for (int i = 0; i < 6; i++) {
         y1 = 240;

@@ -5,6 +5,7 @@
 
 int main(int argc, char * argv[])
 {
-    initializeWelcomeDisplay();
+    WelcomeDisplay welcomeDisplay;
+    welcomeDisplay.initializeWelcomeDisplay();
 	return(0);
 }

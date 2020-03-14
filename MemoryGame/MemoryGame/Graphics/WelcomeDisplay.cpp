@@ -1,6 +1,6 @@
 #include "WelcomeDisplay.h"
 
-void initializeWelcomeDisplay () {
+void WelcomeDisplay::initializeWelcomeDisplay () {
     
     ALLEGRO_DISPLAY *display = NULL;
     if(!al_init()) {
@@ -20,5 +20,6 @@ void initializeWelcomeDisplay () {
     al_rest(3);
 
     al_clear_to_color(al_map_rgb(255, 255, 255));
-    initializeDisplay(display);
+    GameDisplay gameDisplay;
+    gameDisplay.initializeDisplay(display);
 }

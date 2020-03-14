@@ -9,6 +9,9 @@
 #include "allegro5/allegro_image.h"
 #include "allegro5/allegro_primitives.h"
 
-void initializeWelcomeDisplay();
+class WelcomeDisplay {
+public:
+    void initializeWelcomeDisplay();
+};
 
 #endif /* WelcomeDisplay_h */
